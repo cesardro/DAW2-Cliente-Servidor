@@ -7,6 +7,8 @@ function principal() {
 
 function cambia() {
 
+    console.log("Estoy en cambia");
+
     parrafos = document.getElementsByTagName('p');
 
     for (parr of parrafos) {
@@ -15,6 +17,8 @@ function cambia() {
 }
 
 function vuelve() {
+
+    console.log("Estoy en vuelve");
 
     parrafos = document.getElementsByTagName('p');
 
