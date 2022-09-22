@@ -1,28 +1,32 @@
-onload = principal;
+let n = prompt("Introduce un número:");
+
+console.log(n)
+
+/* onload = principal;
 
 function principal() {
     document.getElementById('boton1').onclick = cambia;
-    document.getElementById('boton2').onclick = vuelve;
-}
+     document.getElementById('boton2').onclick = vuelve;
+ }
 
 function cambia() {
 
     console.log("Estoy en cambia");
 
-    parrafos = document.getElementsByTagName('p');
+     parrafos = document.getElementsByTagName('p');
 
     for (parr of parrafos) {
-        parr.innerHTML = "Cambiado";
+         parr.innerHTML = "Cambiado";
     }
-}
+ }
 
-function vuelve() {
+ function vuelve() {
 
     console.log("Estoy en vuelve");
 
-    parrafos = document.getElementsByTagName('p');
+     parrafos = document.getElementsByTagName('p');
 
-    for (parr of parrafos) {
+     for (parr of parrafos) {
         parr.innerHTML = "Esto es un párrafo";
     }
-}
+ } */
