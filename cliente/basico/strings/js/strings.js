@@ -84,27 +84,27 @@ function ejer6() {
     let contu = 0;
 
     for (let index = 0; index < texto.length; index++) {
-        if (texto[index] == 'a') {
+        if ((texto[index] == 'a') || (texto[index] == 'A')) {
             conta++;
         }
-        if (texto[index] == 'e') {
+        if ((texto[index] == 'e') || (texto[index] == 'E')) {
             conte++;
         }
-        if (texto[index] == 'i') {
+        if ((texto[index] == 'i') || (texto[index] == 'I')) {
             conti++;
         }
-        if (texto[index] == 'o') {
+        if ((texto[index] == 'o') || (texto[index] == 'O')) {
             conto++;
         }
-        if (texto[index] == 'u') {
+        if ((texto[index] == 'u') || (texto[index] == 'U')) {
             contu++;
         }
     }
-    document.getElementById('pEjer6').innerHTML = "La vocal 'a' ha sido encontrada " + conta + ' veces. <br>' +
-    "La vocal 'e' ha sido encontrada " + conte + ' veces. <br>' +
-    "La vocal 'i' ha sido encontrada " + conti + ' veces. <br>' +
-    "La vocal 'o' ha sido encontrada " + conto + ' veces. <br>' +
-    "La vocal 'u' ha sido encontrada " + contu + ' veces. <br>';
+    document.getElementById('pEjer6').innerHTML = "La vocal 'A/a' ha sido encontrada " + conta + ' veces. <br>' +
+    "La vocal 'E/e' ha sido encontrada " + conte + ' veces. <br>' +
+    "La vocal 'I/i' ha sido encontrada " + conti + ' veces. <br>' +
+    "La vocal 'O/o' ha sido encontrada " + conto + ' veces. <br>' +
+    "La vocal 'U/u' ha sido encontrada " + contu + ' veces. <br>';
 }
 
 function ejer7() {
