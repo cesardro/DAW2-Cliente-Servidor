@@ -126,7 +126,10 @@ function ejer8() {
     //Recuperar el texto del input
     let texto = document.getElementById('cadena').value;
 
+    //Tenemos un temporal que da las vueltas a las palabras.
     let temp = '';
+
+    //Tenemos una salida, que va guardando las palabras ya dadas la vuelta.
     let salida = '';
 
     for (let index = 0; index < texto.length; index++){    
@@ -137,6 +140,7 @@ function ejer8() {
             temp = '';
         }
     }
+    //Guarda la última palabra dada la vuelta, ya que al final de la frase no hay espacio.
     salida = salida + ' ' + temp;
     
     document.getElementById('pEjer8').innerHTML = salida;
