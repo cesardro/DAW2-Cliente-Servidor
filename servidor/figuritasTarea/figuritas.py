@@ -26,9 +26,15 @@ def abc(n):
     listaABC = ["A","B","C","D","E","F","G","H","I","J","K","L","M","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
     for i in range(n):
-        print(' '*(n-i-1) + (chr(65+i)+' ')*(i+1))
+        print(' '*(n-i-1) + (listaABC[i]+' ')*(i+1))
     for i in range(n):
-        print(' '*(i+1) + (chr(65+n-i-2)+' ')*(n-i-1))
+        print(' '*(i+1) + (listaABC[n-i-2]+' ')*(n-i-1))
+
+    #chr saca codigo ASCII, por lo que no seria necesario un array con el abecedario.
+    # for i in range(n):
+    #     print(' '*(n-i-1) + (chr(65+i)+' ')*(i+1))
+    # for i in range(n):
+    #     print(' '*(i+1) + (chr(65+n-i-2)+' ')*(n-i-1))
 
 if(figura == 1):
     astericos(nfilas)
