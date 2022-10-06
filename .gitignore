@@ -8,3 +8,8 @@ servidor/strings/%SystemDrive%
 servidor/colecciones/%SystemDrive%
 servidor/figuritas/%SystemDrive%
 servidor/figuritasTarea/%SystemDrive%
+servidor/modules/%SystemDrive%
+servidor/modules/__pycache__
+servidor/contadorVisitas/%SystemDrive%
+servidor/contadorVisitas/__pycache__
+servidor/cookies/%SystemDrive%
