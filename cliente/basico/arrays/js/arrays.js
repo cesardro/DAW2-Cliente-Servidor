@@ -59,3 +59,30 @@ function arrayPush() {
     lista.push(numero.value);
     salida.innerHTML = lista.join("-");
 }
+
+function ordenarNormal() {
+    let lista = datoUsuario.value.split(" ");
+    lista.sort();
+    salida.innerHTML = lista.join("-");
+}
+
+function ordenarReverse() {
+    let lista = datoUsuario.value.split(" ");
+    //Reserve solo le da la vuelta al array, no ordena. 
+    lista.sort().reverse();
+    salida.innerHTML = lista.join("-");
+}
+
+function ordenarNumericamente() {
+    let lista = datoUsuario.value.split(" ");
+    lista.sort(ordenNum);
+    //Esto es lo msimo que llamar a la función => 
+    //lista.sort(function (a, b) { return a - b });
+    //lista.sort((a, b) => { return a - b });
+    salida.innerHTML = lista.join("-");
+}
+
+function ordenNum(a, b) {
+    return a - b;
+    //Lo devuelve al revés => return b - a;
+}
