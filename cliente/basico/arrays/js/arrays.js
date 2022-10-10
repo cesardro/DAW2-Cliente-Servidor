@@ -86,3 +86,24 @@ function ordenNum(a, b) {
     return a - b;
     //Lo devuelve al revés => return b - a;
 }
+
+function arrayForEach() {
+    let lista = datoUsuario.value.split(" ");
+    console.log(lista);
+    lista.forEach(pasaAEntero);
+}
+
+function pasaAEntero(value, index, array) {
+    salida.innerHTML += value + "-" + index + ":";
+    //Convertir de string a integer.
+    // if (value >= 100) {
+    //     array[index] = parseInt(value);
+    // }
+    return parseInt(value);
+}
+
+function arrayMap() {
+    const lista = datoUsuario.value.split(" ");
+    const nuevaLista = lista.map(pasaAEntero);
+    console.log(nuevaLista);
+}
