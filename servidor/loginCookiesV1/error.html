@@ -1,4 +1,3 @@
-cabeceraHTML = """
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,35 +21,11 @@ cabeceraHTML = """
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6 text-center">
-                <h3 class="display-3">{}</h3>
-
-"""
-
-finalHTML = """
+                <h3 class="display-3">Error</h3>
             </div>
             <div class="col-3"></div>
         </div>
     </div>
 </body>
+
 </html>
-"""
-
-redireccionError = """
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta http-equiv="Refresh" content="{}; URL={}" />
-</head>
-<body>
-    <h3 class="Display-3">Gracias por usar el servicio super secreto del CNI</h3>
-</body>
-</html>
-"""
-
-redireccion = lambda s,t : print(redireccion.format(s,t))
-
-def redireccionIndex():
-    redireccion(3, "index.html")
-
-def redireccionError():
-    redireccion(0, "error.html")

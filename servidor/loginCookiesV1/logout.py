@@ -24,6 +24,4 @@ if 'SID' in todasCokis:
 
 print("Content-Type: text/html\n")
 
-print(CodigoHTML.cabeceraHTML.format("CNI", "Saliste del sistema."))
-print("<a href='index.html'>Página de acceso</a><br>")
-print(CodigoHTML.finalHTML)
+print(CodigoHTML.redireccionIndex())

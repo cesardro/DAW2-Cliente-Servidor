@@ -34,6 +34,6 @@ if estaDentro:
     print("<a href='secretosEstado.py'>Secretos de Estado</a><br>")
     print("<a href='secretosEmerito.py'>Secretos del Emerito</a><br>")
 else:
-    print(CodigoHTML.redireccion.format("index.html"))
+    print(CodigoHTML.redireccionError)
 
 print(CodigoHTML.finalHTML)

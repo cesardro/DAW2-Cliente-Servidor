@@ -16,3 +16,5 @@ servidor/cookies/%SystemDrive%
 servidor/cookies/__pycache__
 servidor/contadorCookies/%SystemDrive%
 servidor/contadorCookies/__pycache__
+servidor/loginCookiesV1/%SystemDrive%
+servidor/loginCookiesV1/__pycache__
