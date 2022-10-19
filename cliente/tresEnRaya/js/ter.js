@@ -10,6 +10,7 @@ let fin = false;
 
 function principal() {
     dibujaTablero();
+    document.getElementById("juegan").innerHTML = "Juegan X";
 }
 
 function dibujaTablero() {
@@ -30,7 +31,7 @@ function dibujaTablero() {
 }
 
 function pinchado(dibujoImg, posicion) {
-    if(!fin){
+    if (!fin) {
         turno(dibujoImg, posicion);
     }
 }
@@ -39,16 +40,16 @@ function turno(dibujoImg, posicion) {
     if (turn == 1) {
         if (casillaOcupada(posicion)) {
             dibujoImg.setAttribute("src", "img/x.png");
-            revisarJuego(posicion);
             turn = 2;
             document.getElementById("juegan").innerHTML = "Juegan O";
+            revisarJuego();
         }
     } else if (turn == 2) {
         if (casillaOcupada(posicion)) {
             dibujoImg.setAttribute("src", "img/o.png");
-            revisarJuego(posicion);
             turn = 1;
             document.getElementById("juegan").innerHTML = "Juegan X";
+            revisarJuego();
         }
     } else {
         console.log("ERROR");
@@ -132,9 +133,9 @@ function casillaOcupada(posicion) {
         }
         return true;
     } else {
-        if(turn == 1){
+        if (turn == 1) {
             document.getElementById("juegan").innerHTML = "Casilla ocupada - Juegan X";
-        }else{
+        } else {
             document.getElementById("juegan").innerHTML = "Casilla ocupada - Juegan O";
         }
         return false;
@@ -215,21 +216,21 @@ function revisarJuego() {
         }
     }
 
-    if (cont == 9) {
+    if (cont == 9 && fin == false) {
         document.getElementById("juegan").innerHTML = "EMPATE";
+        turn = 0;
         reiniciarJuego();
     }
 
 }
 
 function reiniciarJuego() {
-    if( turn == 1){
-        console.log("entroX");
-        document.getElementById("juegan").innerHTML = "Ganan las X!";
-    }else{
-        console.log("entroO");
+    if (turn == 1) {
         document.getElementById("juegan").innerHTML = "Ganan las O!";
+    } else if (turn == 2) {
+        document.getElementById("juegan").innerHTML = "Ganan las X!";
     }
+    
     let button = document.createElement("input");
     button.setAttribute("id", "btn");
     button.setAttribute("type", "button");
@@ -239,7 +240,7 @@ function reiniciarJuego() {
     fin = true;
 }
 
-function reiniciamos(){
+function reiniciamos() {
     for (let index = 0; index < mapa.length; index++) {
         mapa[index] = 0;
         const element = document.getElementById("casilla");
@@ -248,6 +249,7 @@ function reiniciamos(){
     const element = document.getElementById("btn");
     element.remove();
     cont = 0;
+    turn = 1;
     fin = false;
     principal();
 }
