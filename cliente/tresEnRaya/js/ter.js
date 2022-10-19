@@ -216,9 +216,8 @@ function revisarJuego() {
     }
 
     if (cont == 9) {
-        if (confirm("Empate, jugar de nuevo?")) {
-            reiniciarJuego();
-        }
+        document.getElementById("juegan").innerHTML = "EMPATE";
+        reiniciarJuego();
     }
 
 }
