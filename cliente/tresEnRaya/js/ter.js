@@ -221,7 +221,6 @@ function revisarJuego() {
         turn = 0;
         reiniciarJuego();
     }
-
 }
 
 function reiniciarJuego() {
