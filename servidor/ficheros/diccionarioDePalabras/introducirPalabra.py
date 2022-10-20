@@ -9,10 +9,10 @@ args = cgi.parse()
 
 datos = []
 
-datos.append(args["nombre"][0])
-datos.append(args["edad"][0])
+datos.append(args["palabra"][0])
 
-f = open("datos/listado.json", "a")
-# Transforma a JSON.
+f = open("datos/listado.json", "rt")
+listado = json.loads(f)
+print(listado)
 f.write(json.dumps(datos))
 f.close()
