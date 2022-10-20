@@ -4,34 +4,53 @@ import cgi
 from genericpath import exists
 import json
 import os.path
+import codigoHTML
 
-print("Content-Type: text/plain\n")
+print("Content-Type: text/html\n")
 
 args = cgi.parse()
 
 datos = []
 
-datos.append(args["name"][0])
-datos.append(args["pswd"][0])
-datos.append(args["email"][0])
+proceder = False
 
-bandera = True
+try:
 
-if(os.path.exists("datos/listado.json")):
+    datos.append(args["name"][0])
+    datos.append(args["pswd"][0])
+    datos.append(args["email"][0])
+    if (os.path.exists("datos/listado.json")):
 
-    f = open("datos/listado.json", "rt")
-    datosEnJson = json.loads(f.read())
-    f.close()
+        f = open("datos/listado.json", "rt")
+        datosEnJson = json.loads(f.read())
+        f.close()
 
-    datosEnJson.append(datos)
-    f = open("datos/listado.json", "wt")
-    f.write(json.dumps(datosEnJson))
-    f.close()
+        for x in datosEnJson:
+            nombre = x[0]
+            email = x[2]
 
-else:
+            if (nombre == datos[0] or email == datos[2]):
+                proceder = True
 
-    f = open("datos/listado.json", "wt")
-    f.write("[")
-    f.write(json.dumps(datos))
-    f.write("]")
-    f.close()
+        if (proceder):
+            print(codigoHTML.cabeceraHTML.format("Registro fallado",
+                  '<meta http-equiv="Refresh" content="2; URL=../aplicacion.html"/>', "Usuario o correo duplicado. Redirigiendo"))
+            print(codigoHTML.finalHTML)
+        else:
+            datosEnJson.append(datos)
+            f = open("datos/listado.json", "wt")
+            f.write(json.dumps(datosEnJson))
+            f.close()
+
+    else:
+
+        f = open("datos/listado.json", "wt")
+        f.write("[")
+        f.write(json.dumps(datos))
+        f.write("]")
+        f.close()
+
+except:
+    print(codigoHTML.cabeceraHTML.format("",
+          '<meta http-equiv="Refresh" content="0; URL=../error.html"/>', ""))
+    print(codigoHTML.finalHTML)
