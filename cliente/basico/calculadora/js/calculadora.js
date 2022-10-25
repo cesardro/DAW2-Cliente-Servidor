@@ -15,13 +15,13 @@ class Calcula {
     igual() {
         switch (this.operacion) {
             case 1:
-                return cal.suma();
+                return parseFloat(cal.suma()).toFixed(2);
             case 2:
-                return cal.resta();
+                return parseFloat(cal.resta()).toFixed(2);
             case 3:
-                return cal.multiplicacion();
+                return parseFloat(cal.multiplicacion()).toFixed(2);
             case 4:
-                return cal.division();
+                return parseFloat(cal.division()).toFixed(2);
             default:
                 return -1;
         }
@@ -66,6 +66,7 @@ function dibujaCalculadora() {
 
 let stage = 0;
 let cal = new Calcula();
+let yaTengoComa = false;
 
 /*
 stage 0 -> Calculadora sin empezar.
@@ -76,40 +77,67 @@ stage 4 -> Presiona igual.
 */
 
 function pulsado(n) {
-    if (stage == 0 && (n != '+' && n != '-' && n != '*' && n != '/' && n != '=' && n != ',')) {
+    if (stage == 0 && n != '+' && n != '-' && n != '*' && n != '/' && n != '=' && n != ',') {
         stage = 1;
         cal.operando1 = n;
-        document.getElementById("informacion").innerHTML = cal.operando1;
+        document.getElementById("informacion").innerHTML = n;
     } else if (stage == 1) {
-        if (n == '+' || n == '-' || n == '*' || n == '/' || n == '=' || n == ',') {
+        if (n == '+' || n == '-' || n == '*' || n == '/') {
             stage = 2;
+            numEntero = 10;
+            transformaComa = 10;
             queSoy(n);
             document.getElementById("informacion").innerHTML = document.getElementById("informacion").innerHTML + n;
-        } else {
+        } else if (n == ',' || yaTengoComa == true) {
+            ponemosComa(n);
+        } else if(n != '='){
             cal.completaOper1(n);
-            document.getElementById("informacion").innerHTML = cal.operando1;
+            document.getElementById("informacion").innerHTML = document.getElementById("informacion").innerHTML + n;
         }
     } else if (stage == 2 && (n != '+' && n != '-' && n != '*' && n != '/' && n != '=' && n != ',')) {
         stage = 3;
+        yaTengoComa = false;
         cal.operando2 = n;
-        document.getElementById("informacion").innerHTML = document.getElementById("informacion").innerHTML + cal.operando2;
+        document.getElementById("informacion").innerHTML = document.getElementById("informacion").innerHTML + n;
     } else if (stage == 3) {
         if (n == '=') {
             stage = 4;
             document.getElementById("informacion").innerHTML = document.getElementById("informacion").innerHTML + n;
-        } else if (n != '+' && n != '-' && n != '*' && n != '/' && n != ',') {
+        } else if (n == ',' || yaTengoComa == true) {
+            ponemosComa(n);
+        } else if (n != '+' && n != '-' && n != '*' && n != '/') {
             cal.completaOper2(n);
             document.getElementById("informacion").innerHTML = document.getElementById("informacion").innerHTML + n;
         }
     }
 
-    console.log(stage);
-
     if (stage == 4) {
         document.getElementById("informacion").innerHTML = document.getElementById("informacion").innerHTML + cal.igual();
         stage = 0;
+        yaTengoComa = false;
     }
 
+}
+
+let transformaComa = 10;
+
+function ponemosComa(n) {
+
+    if (yaTengoComa) {
+        if (stage == 1 && n != ',') {
+            cal.operando1 += n / transformaComa;
+            transformaComa = transformaComa * 10;
+        }
+        if (stage == 3 && n != ',') {
+            cal.operando2 += n / transformaComa;
+            transformaComa = transformaComa * 10;
+        }
+    }
+
+    if(yaTengoComa == false || n != ','){
+        document.getElementById("informacion").innerHTML = document.getElementById("informacion").innerHTML + n;
+    }
+    yaTengoComa = true;
 }
 
 function queSoy(n) {
