@@ -16,18 +16,18 @@
 
     <div class="container mt-3">
         <h2>Registro</h2>
-        <form action="registro.py" method="get">
+        <form action="registro.py" method="post">
             <div class="mb-3 mt-3">
                 <label for="name" >Nombre:</label>
-                <input type="text" class="form-control" id="name" placeholder="Introduce tu nombre" name="name" >
+                <input type="text" class="form-control" id="name" placeholder="Introduce tu nombre" name="name" required>
             </div>
             <div class="mb-3">
                 <label for="pwd">Contraseña:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Introduce contraseña" name="pswd" >
+                <input type="password" class="form-control" id="pwd" placeholder="Introduce contraseña" name="pswd" required>
             </div>
             <div class="mb-3">
                 <label for="email">E-mail:</label>
-                <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electronico" name="email" >
+                <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electronico" name="email" required>
             </div>
             <button type="submit" class="btn btn-primary">Registrarme</button>
             <a href="../aplicacion.html"><button type="button" class="btn btn-primary">Salir</button></a>

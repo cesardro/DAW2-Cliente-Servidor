@@ -31,3 +31,27 @@ finalHTML= """
 </body>
 </html>
 """
+
+pagina1HTML="""
+                <form action="pagina2.py" method="post"><button type="submit" class="btn btn-primary">Pagina 2</button></form>
+                <hr>
+                <form action="logout.py" method="post"><button type="submit" class="btn btn-primary">Logout</button></form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</body>
+</html>
+"""
+
+pagina2HTML="""
+                <form action="pagina1.py" method="post"><button type="submit" class="btn btn-primary">Pagina 1</button></form>
+                <hr>
+                <form action="logout.py" method="post"><button type="submit" class="btn btn-primary">Logout</button></form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</body>
+</html>
+"""

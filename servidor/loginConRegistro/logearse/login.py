@@ -34,13 +34,15 @@ try:
                 proceder = True
 
         if (proceder):
-                coki = cookies.SimpleCookie()
-                coki["SID"] = "asd123"
-                # Expira la cookie en 30 días.
-                expires = datetime.datetime.utcnow() + datetime.timedelta(days=30)
-                coki['SID']['expires'] = expires.strftime("%a, %d %b %Y %H:%M:%S GMT")
-                print(coki)
-                print("Content-Type: text/html\n")
+            coki = cookies.SimpleCookie()
+            coki["SID"] = pswd
+            # Expira la cookie en 30 días.
+            expires = datetime.datetime.utcnow() + datetime.timedelta(days=30)
+            coki['SID']['expires'] = expires.strftime("%a, %d %b %Y %H:%M:%S GMT")
+            print(coki)
+            print("Content-Type: text/html\n")
+            print(codigoHTML.cabeceraHTML.format("Logeado", '<meta http-equiv="Refresh" content="3; URL=pagina1.py"/>', "Logeado exitosamente. Redirigiendo a pagina."))
+            print(codigoHTML.finalHTML)
         else:
             print(codigoHTML.cabeceraHTML.format("Registro fallado",
                   '<meta http-equiv="Refresh" content="3; URL=login.html"/>', "Usuario o Contraseña incorrectos. Intenta de nuevo."))
@@ -48,9 +50,11 @@ try:
 
     else:
 
-        print(codigoHTML.cabeceraHTML.format("", '<meta http-equiv="Refresh" content="0; URL=../error.html"/>', ""))
+        print(codigoHTML.cabeceraHTML.format(
+            "", '<meta http-equiv="Refresh" content="0; URL=../error.html"/>', ""))
         print(codigoHTML.finalHTML)
 
 except:
-    print(codigoHTML.cabeceraHTML.format("", '<meta http-equiv="Refresh" content="0; URL=../error.html"/>', ""))
+    print(codigoHTML.cabeceraHTML.format(
+        "", '<meta http-equiv="Refresh" content="0; URL=../error.html"/>', ""))
     print(codigoHTML.finalHTML)

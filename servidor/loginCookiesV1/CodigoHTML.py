@@ -35,22 +35,22 @@ finalHTML = """
 </html>
 """
 
-redireccionError = """
+redireccionHtml = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="Refresh" content="{}; URL={}" />
+  <meta http-equiv="Refresh" content="{}; URL={}" />
 </head>
 <body>
-    <h3 class="Display-3">Gracias por usar el servicio super secreto del CNI</h3>
+    <h3 class="Display-3">Saliendo...</h3>
 </body>
 </html>
 """
 
-redireccion = lambda s,t : print(redireccion.format(s,t))
+redireccion = lambda s,t : print(redireccionHtml.format(s,t))
 
 def redireccionIndex():
-    redireccion(3, "index.html")
+    redireccion(3,"index.html")
 
 def redireccionError():
-    redireccion(0, "error.html")
+    redireccion(0,"error.html")

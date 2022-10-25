@@ -41,7 +41,9 @@ try:
             f = open("datos/listado.json", "wt")
             f.write(json.dumps(datosEnJson))
             f.close()
-
+            print(codigoHTML.cabeceraHTML.format("Registro completado",
+                  '<meta http-equiv="Refresh" content="2; URL=../aplicacion.html"/>', "Registro completado. Redirigiendo"))
+            print(codigoHTML.finalHTML)
     else:
 
         f = open("datos/listado.json", "wt")
