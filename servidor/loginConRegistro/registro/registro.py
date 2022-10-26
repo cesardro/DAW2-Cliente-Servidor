@@ -5,6 +5,7 @@ from genericpath import exists
 import json
 import os.path
 import codigoHTML
+import hashlib
 
 print("Content-Type: text/html\n")
 
@@ -17,7 +18,10 @@ proceder = False
 try:
 
     datos.append(args["name"][0])
-    datos.append(args["pswd"][0])
+    #Encriptado de contraseñas
+    h=hashlib.sha512(str.encode(args["pswd"][0]))
+    datos.append(h.hexdigest())
+    #Fin encriptado
     datos.append(args["email"][0])
     if (os.path.exists("datos/listado.json")):
 

@@ -8,6 +8,7 @@ import os.path
 import os
 import datetime
 import codigoHTML
+import hashlib
 
 args = cgi.parse()
 
@@ -16,7 +17,9 @@ datos = []
 proceder = False
 
 datos.append(args["name"][0])
-datos.append(args["pswd"][0])
+#Encriptado de contraseñas
+h=hashlib.sha512(str.encode(args["pswd"][0]))
+datos.append(h.hexdigest())
 
 try:
 
