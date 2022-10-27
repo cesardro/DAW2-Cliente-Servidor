@@ -43,4 +43,4 @@ myresult = mycursor.fetchone()
 print(type(myresult))
 
 print(myresult)
-print(myresult[0])
+print(myresult[1])
