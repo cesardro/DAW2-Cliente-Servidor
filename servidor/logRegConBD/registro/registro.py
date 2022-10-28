@@ -2,8 +2,6 @@
 
 import cgi
 from genericpath import exists
-import json
-import os.path
 import codigoHTML
 import hashlib
 import mysql.connector
@@ -19,8 +17,6 @@ print("Content-Type: text/html\n")
 
 args = cgi.parse()
 
-datos = []
-
 proceder = False
 
 mycursor = mydb.cursor()
@@ -32,13 +28,28 @@ try:
     pswd = (pswd.hexdigest())
     email = args['email'][0]
 
-    mycursor.execute("SELECT * FROM logRegConBD where = '", name, "'")
+    mycursor.execute("SELECT * FROM logRegConBD where name='" +
+                     name + "' OR email='"+email+"'")
 
     myresult = mycursor.fetchall()
 
-    if not myresult:
-        sql = 'INSERT INTO logregcondb (name, pswd, email, admin) VALUES (', name, pswd, email, 1, ')'
+    for x in myresult:
+        if (x[1] == name or x[3] == email):
+            proceder = True
 
+    if proceder:
+        print(codigoHTML.cabeceraHTML.format("Registro fallado",
+                                             '<meta http-equiv="Refresh" content="2; URL=../aplicacion.html"/>', "Usuario o correo duplicado. Redirigiendo"))
+        print(codigoHTML.finalHTML)
+    else:
+        sql = "INSERT INTO logRegConBD (name, pswd, email, admin) VALUES (%s, %s, %s, %s)"
+        val = (name, pswd, email, 0)
+        mycursor.execute(sql, val)
+        mydb.commit()
+
+        print(codigoHTML.cabeceraHTML.format("Registro completado",
+                                             '<meta http-equiv="Refresh" content="2; URL=../aplicacion.html"/>', "Registro completado. Redirigiendo"))
+        print(codigoHTML.finalHTML)
 
 except:
     print(codigoHTML.cabeceraHTML.format("",

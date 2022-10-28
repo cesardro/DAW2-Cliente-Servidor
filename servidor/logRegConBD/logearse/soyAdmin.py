@@ -16,7 +16,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("SELECT pswd FROM logRegConBD")
+mycursor.execute("SELECT * FROM logRegConBD")
 myresult = mycursor.fetchall()
 
 todasCokis = {}  # diccionario vacio
@@ -32,13 +32,30 @@ coki = cookies.SimpleCookie()
 
 if 'SID' in todasCokis:
     for datos in myresult:
-        if (datos[0] == todasCokis['SID']):
+        if (datos[2] == todasCokis['SID']):
             proceder = True
 
 if proceder:
     print("Content-Type: text/html\n")
-    print(codigoHTML.cabeceraHTML.format("Pagina 1", "", "PAGINA 1"))
-    print(codigoHTML.pagina1HTML)
+    print(codigoHTML.cabeceraHTML.format("Admin", "", "Bienvenido ADMIN"))
+
+    for x in myresult:
+        print(codigoHTML.soyAdminHTML.format('<tr><td>' + x[1] + '</td>'))
+        if x[4] == 1:
+            print('<td>Si</td>')
+            print('<td>No disponible</td>')
+        else:
+            print('<td>No</td>')
+            print('<td><form action="borrar.py" method="post">')
+            print('<button type="submit" class="btn btn-primary">Borrar</button>')
+            print('<input type="hidden" name="idUsuario" value="' +
+                  str(x[0])+'">')
+            print('</form></td>')
+        print('</tr>')
+    print('</table>')
+    print('<form action="logout.py" method="get"><button type="submit" class="btn btn-primary">Log out</button></form>')
+    print(codigoHTML.finalHTML)
+
 else:
     print("Content-Type: text/html\n")
     print(codigoHTML.cabeceraHTML.format(

@@ -1,4 +1,4 @@
-cabeceraHTML= """
+cabeceraHTML = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,7 @@ cabeceraHTML= """
                 <h3 class="display-3">{}</h3>
             
 """
-finalHTML= """
+finalHTML = """
             </div>
             <div class="col-3"></div>
         </div>
@@ -32,7 +32,7 @@ finalHTML= """
 </html>
 """
 
-pagina1HTML="""
+pagina1HTML = """
                 <form action="pagina2.py" method="post"><button type="submit" class="btn btn-primary">Pagina 2</button></form>
                 <hr>
                 <form action="logout.py" method="post"><button type="submit" class="btn btn-primary">Logout</button></form>
@@ -44,10 +44,22 @@ pagina1HTML="""
 </html>
 """
 
-pagina2HTML="""
+pagina2HTML = """
                 <form action="pagina1.py" method="post"><button type="submit" class="btn btn-primary">Pagina 1</button></form>
                 <hr>
                 <form action="logout.py" method="post"><button type="submit" class="btn btn-primary">Logout</button></form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</body>
+</html>
+"""
+
+soyAdminHTML = """
+                <table class="table">
+                    <tr><th>Nombre</th><th>Admin</th><th>Borrar</th></tr>
+                    {}
             </div>
             <div class="col-3"></div>
         </div>
