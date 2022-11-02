@@ -16,7 +16,7 @@ function llamadaServidor() {
     //Código para tratar la respuesta
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            if (numero1 < numero2) {
+            if (0 < numero1 < numero2 < 10) {
                 //Transformamos de JSON.
                 let listaN = JSON.parse(this.responseText);
                 let lista = "<ul>";
