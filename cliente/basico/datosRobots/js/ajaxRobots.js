@@ -1,14 +1,15 @@
 onload = principal;
 
 function principal() {
-    document.getElementById("pedirObjeto").setAttribute("onclick", "llamadaServidor()");
+    document.getElementById("siguiente").setAttribute("onclick", "llamadaServidor()");
+    llamadaServidor();
 }
 
 function llamadaServidor() {
     //Configuración y objetos
-    let parrafo = document.getElementById("salida");
-
-    let identificador = document.getElementById("entrada").value;
+    let name = document.getElementById("name");
+    let date_of_birth = document.getElementById("date_of_birth");
+    let address = document.getElementById("address");
 
     let xmlhttp = new XMLHttpRequest();
 
@@ -16,20 +17,14 @@ function llamadaServidor() {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let persona = JSON.parse(this.responseText);
-            if (persona != -1) {
-                datos = "nombre:" + persona.nombre + "<br>";
-                datos += "apellidos:" + persona.apellidos + "<br>";
-                datos += "edad:" + persona.edad + "<br>";
-                parrafo.innerHTML = datos;
-            } else {
-                parrafo.innerHTML = "Error";
-            }
+            document.getElementById("avatar").setAttribute("src", persona.avatar);
+            name.innerHTML = "Identifiación: " + persona.first_name + " " + persona.last_name;
+            date_of_birth.innerHTML = "Nacimiento: " + persona.date_of_birth;
+            address.innerHTML = "Ciudad: " + persona.address.city;
         }
     };
 
     //Código para hacer la petición al servidor
-    xmlhttp.open("POST", "dimeP.py", true);
-    //Ejecutar la petición al servidor
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("ident=" + identificador);
+    xmlhttp.open("GET", "https://random-data-api.com/api/v2/users", true);
+    xmlhttp.send();
 }
