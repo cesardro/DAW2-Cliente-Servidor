@@ -15,6 +15,7 @@ CREATE TABLE roles (
     descripcion varchar(255),
     PRIMARY KEY (id)
 );
+
 CREATE TABLE usuarios (
     id int NOT NULL AUTO_INCREMENT,
     usuario varchar(255) UNIQUE NOT NULL,

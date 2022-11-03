@@ -16,9 +16,9 @@ soyAdmin = False
 
 mydb = mysql.connector.connect(
     host='localhost',
-    user='logRegConBD',
-    password='logRegConBD',
-    database='logRegConBD'
+    user='comentaLibro',
+    password='comentaLibro',
+    database='comentaLibro'
 )
 
 mycursor = mydb.cursor()
@@ -30,7 +30,7 @@ pswd = (pswd.hexdigest())
 
 try:
 
-    mycursor.execute("SELECT * FROM logRegConBD where name='" + name + "'")
+    mycursor.execute("SELECT * FROM usuarios where usuario='" + name + "'")
 
     myresult = mycursor.fetchall()
 

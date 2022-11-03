@@ -8,9 +8,9 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
     host='localhost',
-    user='logRegConBD',
-    password='logRegConBD',
-    database='logRegConBD'
+    user='comentaLibro',
+    password='comentaLibro',
+    database='comentaLibro'
 )
 
 print("Content-Type: text/html\n")
@@ -28,8 +28,8 @@ try:
     pswd = (pswd.hexdigest())
     email = args['email'][0]
 
-    mycursor.execute("SELECT * FROM logRegConBD where name='" +
-                     name + "' OR email='"+email+"'")
+    mycursor.execute("SELECT * FROM usuarios where usuario='" +
+                     name + "' OR mail='"+email+"'")
 
     myresult = mycursor.fetchall()
 
@@ -42,8 +42,8 @@ try:
                                              '<meta http-equiv="Refresh" content="2; URL=../aplicacion.html"/>', "Usuario o correo duplicado. Redirigiendo"))
         print(codigoHTML.finalHTML)
     else:
-        sql = "INSERT INTO logRegConBD (name, pswd, email, admin) VALUES (%s, %s, %s, %s)"
-        val = (name, pswd, email, 0)
+        sql = "INSERT INTO usuarios (usuario, passwd, mail, rolId) VALUES (%s, %s, %s, %s)"
+        val = (name, pswd, email, 2)
         mycursor.execute(sql, val)
         mydb.commit()
 

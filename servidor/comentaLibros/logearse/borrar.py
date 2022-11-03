@@ -11,13 +11,13 @@ idUser = args["idUsuario"][0]
 
 mydb = mysql.connector.connect(
     host='localhost',
-    user='logRegConBD',
-    password='logRegConBD',
-    database='logRegConBD'
+    user='comentaLibro',
+    password='comentaLibro',
+    database='comentaLibro'
 )
 
 mycursor = mydb.cursor()
-mycursor.execute("DELETE FROM logRegConBD WHERE id="+idUser)
+mycursor.execute("DELETE FROM usuarios WHERE id="+idUser)
 mydb.commit()
 
 print("Content-Type: text/html\n")

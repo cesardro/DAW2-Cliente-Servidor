@@ -9,14 +9,14 @@ proceder = False
 
 mydb = mysql.connector.connect(
     host='localhost',
-    user='logRegConBD',
-    password='logRegConBD',
-    database='logRegConBD'
+    user='comentaLibro',
+    password='comentaLibro',
+    database='comentaLibro'
 )
 
 mycursor = mydb.cursor()
 
-mycursor.execute("SELECT pswd FROM logRegConBD")
+mycursor.execute("SELECT passwd FROM usuarios")
 myresult = mycursor.fetchall()
 
 todasCokis = {}  # diccionario vacio
