@@ -16,7 +16,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("SELECT passwd FROM usuarios")
+mycursor.execute("SELECT usuario FROM usuarios")
 myresult = mycursor.fetchall()
 
 todasCokis = {}  # diccionario vacio
@@ -36,9 +36,21 @@ if 'SID' in todasCokis:
             proceder = True
 
 if proceder:
+    mycursor.execute("SELECT * FROM comentarios")
+    comentarios = mycursor.fetchall()
     print("Content-Type: text/html\n")
-    print(codigoHTML.cabeceraHTML.format("Pagina 1", "", "PAGINA 1"))
-    print(codigoHTML.pagina1HTML)
+    print(codigoHTML.cabeceraHTML.format("Principal", "", "Foro de libros"))
+    print("<form style='margin: 30px auto;' action='postea.py' method='post'><button type='submit' class='btn btn-primary'>Postea un libro</button></form>")
+    print("<form action='logout.py' method='post'><button type='submit' class='btn btn-primary'>Logout</button></form>")
+    print("<table class='table' style='text-align: center; padding: auto;'>")
+    print("<tr>")
+    print("<th>Libro</th>")
+    print("<th>Comentario</th>")
+    print("</tr>")
+    for x in comentarios:
+        print(codigoHTML.interfaz.format(x[1], x[5], x[3]))
+    print("</table>")
+    print(codigoHTML.finalHTML)
 else:
     print("Content-Type: text/html\n")
     print(codigoHTML.cabeceraHTML.format(

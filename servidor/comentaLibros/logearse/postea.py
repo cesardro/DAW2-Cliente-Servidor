@@ -16,7 +16,7 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("SELECT passwd FROM usuarios")
+mycursor.execute("SELECT usuario FROM usuarios")
 myresult = mycursor.fetchall()
 
 todasCokis = {}  # diccionario vacio
@@ -37,8 +37,8 @@ if 'SID' in todasCokis:
 
 if proceder:
     print("Content-Type: text/html\n")
-    print(codigoHTML.cabeceraHTML.format("Pagina 2", "", "PAGINA 2"))
-    print(codigoHTML.pagina1HTML)
+    print(codigoHTML.cabeceraHTML.format("Posteando", "", "Postea tu libro"))
+    print(codigoHTML.postea)
 else:
     print("Content-Type: text/html\n")
     print(codigoHTML.cabeceraHTML.format(

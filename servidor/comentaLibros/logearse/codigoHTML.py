@@ -32,24 +32,41 @@ finalHTML = """
 </html>
 """
 
-pagina1HTML = """
-                <form action="pagina2.py" method="post"><button type="submit" class="btn btn-primary">Pagina 2</button></form>
-                <hr>
-                <form action="logout.py" method="post"><button type="submit" class="btn btn-primary">Logout</button></form>
-            </div>
-            <div class="col-3"></div>
-        </div>
-    </div>
-</body>
-</html>
+interfaz = """
+                    <tr>
+                        <td style="display: flex; flex-direction: column; align-items: center;">
+                            {}
+                            <img src="{}" alt="Imagen del libro" style="width: 100%; max-width: 50%; margin: 20px auto;">
+                        </td>
+                        <td>
+                            {}
+                        </td>
+                    </tr>
 """
 
-pagina2HTML = """
-                <form action="pagina1.py" method="post"><button type="submit" class="btn btn-primary">Pagina 1</button></form>
-                <hr>
-                <form action="logout.py" method="post"><button type="submit" class="btn btn-primary">Logout</button></form>
+postea = """
+                <form action="guardarEnBD.py" method="post">
+                    <div class="mb-3 mt-3">
+                        <label for="titulo" class="form-label">Titulo:</label>
+                        <input type="text" class="form-control" id="titulo" placeholder="Introduce el titulo"
+                            name="titulo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="autor" class="form-label">Autor:</label>
+                        <input type="text" class="form-control" id="autor" placeholder="Introduce la autor" name="autor">
+                    </div>
+                    <div class="mb-3">
+                        <label for="comentario" class="form-label">Comentario:</label>
+                        <input type="text" class="form-control" id="comentario" placeholder="Introduce la comentario" name="comentario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">URL Imagen:</label>
+                        <input type="text" class="form-control" id="imagen" placeholder="Introduce la imagen" name="imagen">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <a href="http://www.servidor.es/comentaLibros/logearse/interfaz.py"><button type="button" class="btn btn-primary">Cancelar</button></a>
+                </form>
             </div>
-            <div class="col-3"></div>
         </div>
     </div>
 </body>

@@ -42,7 +42,7 @@ try:
 
     if proceder:
         coki = cookies.SimpleCookie()
-        coki["SID"] = pswd
+        coki["SID"] = name
         # Expira la cookie en 30 días.
         expires = datetime.datetime.utcnow() + datetime.timedelta(days=30)
         coki['SID']['expires'] = expires.strftime(
@@ -57,7 +57,7 @@ try:
         else:
             print("Content-Type: text/html\n")
             print(codigoHTML.cabeceraHTML.format(
-                "Logeado", '<meta http-equiv="Refresh" content="3; URL=pagina1.py"/>', "Logeado exitosamente. Redirigiendo a pagina."))
+                "Logeado", '<meta http-equiv="Refresh" content="3; URL=interfaz.py"/>', "Logeado exitosamente. Redirigiendo a pagina."))
             print(codigoHTML.finalHTML)
 
     else:
