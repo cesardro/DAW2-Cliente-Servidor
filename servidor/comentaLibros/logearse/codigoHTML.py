@@ -36,7 +36,7 @@ interfaz = """
                     <tr>
                         <td style="display: flex; flex-direction: column; align-items: center;">
                             {}
-                            <img src="{}" alt="Imagen del libro" style="width: 100%; max-width: 50%; margin: 20px auto;">
+                            <img src="img/{}" alt="Imagen del libro" style="width: 100%; max-width: 50%; margin: 20px auto;">
                         </td>
                         <td>
                             {}
@@ -45,7 +45,7 @@ interfaz = """
 """
 
 postea = """
-                <form action="guardarEnBD.py" method="post">
+                <form action="guardarEnBD.py" method="post" enctype="multipart/form-data">
                     <div class="mb-3 mt-3">
                         <label for="titulo" class="form-label">Titulo:</label>
                         <input type="text" class="form-control" id="titulo" placeholder="Introduce el titulo"
@@ -61,7 +61,7 @@ postea = """
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">URL Imagen:</label>
-                        <input type="text" class="form-control" id="imagen" placeholder="Introduce la imagen" name="imagen">
+                        <input type="file" name="filename" id="imagen"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                     <a href="http://www.servidor.es/comentaLibros/logearse/interfaz.py"><button type="button" class="btn btn-primary">Cancelar</button></a>

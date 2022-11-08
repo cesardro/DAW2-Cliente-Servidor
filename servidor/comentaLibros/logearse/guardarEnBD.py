@@ -5,14 +5,17 @@ import os
 from http import cookies
 import codigoHTML
 import mysql.connector
+import cgitb
+cgitb.enable()
+
+form = cgi.FieldStorage()
 
 estasDentro = False
 
-args = cgi.parse()
-titulo = args["titulo"][0]
-autor = args["autor"][0]
-comentario = args["comentario"][0]
-imagen = args["imagen"][0]
+titulo = form["titulo"].value
+autor = form["autor"].value
+comentario = form["comentario"].value
+fileitem = form['filename']
 
 mydb = mysql.connector.connect(
     host='localhost',
@@ -44,16 +47,20 @@ if 'SID' in todasCokis:
             proceder = True
             name = datos[0]
 
-mycursor.execute("SELECT id FROM usuarios WHERE usuario='" + name + "';")
-myresult = mycursor.fetchall()
+if fileitem.filename:
+    fn = os.path.basename(fileitem.filename)
+    open("img/"+fn, 'wb').write(fileitem.file.read())
 
-sql = "INSERT INTO comentarios (titulo, autor, comentario, usuarioId, imagen) VALUES (%s, %s, %s, %s, %s)"
-val = (titulo, autor, comentario, myresult[0][0], imagen)
-mycursor.execute(sql, val)
-mydb.commit()
+    mycursor.execute("SELECT id FROM usuarios WHERE usuario='" + name + "';")
+    myresult = mycursor.fetchall()
 
-print("Content-Type: text/html\n")
+    sql = "INSERT INTO comentarios (titulo, autor, comentario, usuarioId, imagen) VALUES (%s, %s, %s, %s, %s)"
+    val = (titulo, autor, comentario, myresult[0][0], fn)
+    mycursor.execute(sql, val)
+    mydb.commit()
 
-print(codigoHTML.cabeceraHTML.format("Posteando tu critica",
-      '<meta http-equiv="Refresh" content="2; URL=interfaz.py"/>', "Posteando tu critica. Redirigiendo", "", ""))
-print(codigoHTML.finalHTML)
+    print("Content-Type: text/html\n")
+
+    print(codigoHTML.cabeceraHTML.format("Posteando tu critica",
+                                         '<meta http-equiv="Refresh" content="2; URL=interfaz.py"/>', "Posteando tu critica. Redirigiendo", "", ""))
+    print(codigoHTML.finalHTML)
