@@ -12,6 +12,8 @@ form = cgi.FieldStorage()
 
 estasDentro = False
 
+fileName = ''
+
 titulo = form["titulo"].value
 autor = form["autor"].value
 comentario = form["comentario"].value
@@ -47,8 +49,13 @@ if 'SID' in todasCokis:
             proceder = True
             name = datos[0]
 
+mycursor.execute("SELECT MAX(id) FROM comentarios")
+myresult = mycursor.fetchall()
+
+fileName = str(myresult[0][0])+name+fileitem.filename
+
 if fileitem.filename:
-    fn = os.path.basename(fileitem.filename)
+    fn = os.path.basename(fileName)
     open("img/"+fn, 'wb').write(fileitem.file.read())
 
     mycursor.execute("SELECT id FROM usuarios WHERE usuario='" + name + "';")
