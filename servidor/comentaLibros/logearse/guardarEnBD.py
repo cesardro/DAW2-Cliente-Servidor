@@ -52,7 +52,7 @@ if 'SID' in todasCokis:
 mycursor.execute("SELECT MAX(id) FROM comentarios")
 myresult = mycursor.fetchall()
 
-fileName = str(myresult[0][0])+name+fileitem.filename
+fileName = str((myresult[0][0])+1)+name+fileitem.filename
 
 if fileitem.filename:
     fn = os.path.basename(fileName)

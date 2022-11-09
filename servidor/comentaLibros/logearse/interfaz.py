@@ -36,7 +36,8 @@ if 'SID' in todasCokis:
             proceder = True
 
 if proceder:
-    mycursor.execute("SELECT * FROM comentarios")
+    mycursor.execute(
+        "SELECT titulo, imagen, comentario, usuario FROM comentarios INNER JOIN usuarios ON comentarios.usuarioId = usuarios.id")
     comentarios = mycursor.fetchall()
     print("Content-Type: text/html\n")
     print(codigoHTML.cabeceraHTML.format("Principal", "", "Foro de libros"))
@@ -46,9 +47,10 @@ if proceder:
     print("<tr>")
     print("<th>Libro</th>")
     print("<th>Comentario</th>")
+    print("<th>Usuario</th>")
     print("</tr>")
     for x in comentarios:
-        print(codigoHTML.interfaz.format(x[1], x[5], x[3]))
+        print(codigoHTML.interfaz.format(x[0], x[1], x[2], x[3]))
     print("</table>")
     print(codigoHTML.finalHTML)
 else:
