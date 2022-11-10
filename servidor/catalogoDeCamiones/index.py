@@ -6,4 +6,5 @@ print("Content-Type: text/html\n")
 
 print(codigoHTML.cabeceraHTML)
 print(codigoHTML.cuerpoHTML)
+print(codigoHTML.formulario)
 print(codigoHTML.finalHTML)

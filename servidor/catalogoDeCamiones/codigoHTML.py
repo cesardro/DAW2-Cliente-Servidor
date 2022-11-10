@@ -31,6 +31,32 @@ cuerpoHTML = """
                   <div id='listaCamiones'></div>
 """
 
+formulario = """
+                <form">
+                    <div class="mb-3 mt-3">
+                        <label for="modelo" class="form-label">Modelo:</label>
+                        <input type="text" class="form-control" id="modelo" aria-describedby="modeloAyuda" name="modelo">
+                        <div id="modeloAyuda" class="form-text">Escribe el modelo del cami&oacute;n.</div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="marca" class="form-label">Marca:</label>
+                        <input type="text" class="form-control" id="marca" aria-describedby="marcaAyuda" name="marca">
+                        <div id="marcaAyuda" class="form-text">Escribe el marca del cami&oacute;n.</div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="precio" class="form-label">Precio:</label>
+                        <input type="text" class="form-control" id="precio" aria-describedby="precioAyuda" name="precio">
+                        <div id="precioAyuda" class="form-text">Escribe el precio del cami&oacute;n.</div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="desc" class="form-label">Descripci&oacute;n:</label>
+                        <input type="text" class="form-control" id="desc" aria-describedby="descAyuda" name="desc">
+                        <div id="descAyuda" class="form-text">Escribe el desc del cami&oacute;n.</div>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="enviarCamion()">Enviar cami&oacute;n</button>
+               </form>
+"""
+
 tarjetaCamion = """
 <div class="card m-3">
   <div class="row g-0">

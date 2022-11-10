@@ -61,6 +61,32 @@ function creaCamiones(camiones) {
     listaCamiones.innerHTML = x;
 }
 
+function enviarCamion() {
+    let xmlhttp = new XMLHttpRequest();
+
+    //Datos a enviar al servidor.
+    let marca = document.getElementById("marca").value;
+    let modelo = document.getElementById("modelo").value;
+    let precio = document.getElementById("precio").value;
+    let desc = document.getElementById("desc").value;
+
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let resultado = JSON.parse(this.responseText);
+            if (resultado) {
+                camion = [marca, modelo, desc, precio, "volvoFH500.jpg"];
+                listaCamiones.insertBefore(creaCamiones(camion), listaCamiones.firstChild);
+            }
+        }
+    };
+
+    //Enviar información al servidor
+    xmlhttp.open("POST", "guardaCamion.py", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //Ejecutar la petición al servidor
+    xmlhttp.send("marca=" + marca + "&modelo=" + modelo + "&precio=" + precio + "&desc=" + desc);
+}
+
 //Creación de elementos en el DOM dentro del div listaCamiones.
 // let camion1 =
 //     '\
