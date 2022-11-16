@@ -32,19 +32,19 @@ print(claves)
 
 valores = persona.values()
 
-print(valores)
+print("VALORES: ", valores)
 
 listadeTuplas = persona.items()
 
 print(listadeTuplas)
 
 for itm in listadeTuplas:
-    print(itm[0],itm[1])
+    print("=============", itm[0], itm[1])
 
 persona["peso"] = 80
 
 for itm in listadeTuplas:
-    print(itm[0],itm[1])
+    print(itm[0], itm[1])
 
 if "fechaNac" in persona:
     print(persona["fechaNac"])

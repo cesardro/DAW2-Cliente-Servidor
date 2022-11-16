@@ -16,7 +16,9 @@ function cargarServidorCamiones() {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             camiones = JSON.parse(this.responseText);
-            creaCamiones(camiones);
+            for (const camion of ldc) {
+                listaCamiones.append(creaCamion(camion));
+            }
         }
     };
 
@@ -25,40 +27,47 @@ function cargarServidorCamiones() {
     xmlhttp.send();
 }
 
-function creaCamiones(camiones) {
-    for (let n = 0; n < camiones.length; n++) {
-        x =
-            x +
-            '\
-                        <div class="card m-3">\
-                            <div class="row g-0">\
-                                <div class="col-md-6">\
-                                    <img src="img/' +
-            camiones[n][4] +
-            '" class="img-fluid rounded-start" alt="' +
-            camiones[n][0] +
-            '">\
-                                </div>\
-                                <div class="col-md-6">\
-                                    <div class="card-body">\
-                                        <h5 class="card-title">Modelo: ' +
-            camiones[n][0] +
-            '</h5>\
-                                        <p class="card-text">Marca: ' +
-            camiones[n][1] +
-            '</p>\
-                                        <p class="card-text">Precio: ' +
-            camiones[n][3] +
-            '&euro;</p>\
-                                        <p class="card-text">Descripci&oacute;n: ' +
-            camiones[n][2] +
-            "</p>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </div>";
-    }
-    listaCamiones.innerHTML = x;
+function creaCamion(camion) {
+    let img = camion[4];
+    let textImg = camion[1];
+    let modelo = camion[1];
+    let marca = camion[0];
+    let precio = camion[3];
+    let desc = camion[2];
+
+    let divTarjCam = document.createElement("div");
+    divTarjCam.setAttribute("class", "card m-3");
+
+    let divRow = document.createElement("div");
+    divRow.setAttribute("class", "row g-0");
+
+    let subDivImg = document.createElement("div");
+    subDivImg.setAttribute("class", "col-md-5");
+    subDivImg.innerHTML = "<img src=img/" + img + ' class="img-fluid rounded-start" alt=' + textImg + ">";
+
+    let subDivInfo = document.createElement("div");
+    subDivInfo.setAttribute("class", "col-md-7");
+    subDivInfo.innerHTML =
+        '<div class="card-body">\
+                            <h5 class="card-title">Modelo: ' +
+        modelo +
+        '</h5>\
+                            <p class="card-text">Marca: ' +
+        marca +
+        '</p>\
+                            <p class="card-text">Precio: ' +
+        precio +
+        ' &euro;</p>\
+                            <p class="card-text">Descripci&oacute;n: ' +
+        desc +
+        "</p>\
+                          </div>";
+
+    divRow.appendChild(subDivImg);
+    divRow.appendChild(subDivInfo);
+    divTarjCam.appendChild(divRow);
+
+    return divTarjCam;
 }
 
 function enviarCamion() {
