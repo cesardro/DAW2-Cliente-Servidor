@@ -1,16 +1,62 @@
 #!C:\Users\zx21student278\AppData\Local\Microsoft\WindowsApps\python
 
+from datetime import date, timedelta
 import datetime
+import cgi
 
-x = datetime.datetime(2020, 5, 17)
+datosForm = cgi.FieldStorage()
+
+fecha = datosForm["fecha"].value if "fecha" in datosForm else False
 
 print("Content-Type: text/plain\n")
 
-print(x)
+if fecha:
+    fecha = fecha.split("-")
+    dFecha = datetime.datetime(int(fecha[0]), 12, 31)
+    if int(dFecha.strftime("%j")) == 366:
+        print("Es bisiesto")
+    else:
+        print("No es bisiesto")
+else:
+    print("Error")
+# =========================================================================
+fecha = datosForm["fecha"].value if "fecha" in datosForm else datetime.datetime.now()
+listaFecha = fecha.split("-")
+f = datetime.datetime(int(listaFecha[0]), int(
+    listaFecha[1]), int(listaFecha[2]))
 
-print(x.year)
-print(x.day)
-print(x.strftime("%A"))
+print(f)
+# =========================================================================
+dt = date.today() - timedelta(5)
+dd = date.today() + timedelta(5)
+print('Dia de hoy:', date.today())
+print('5 dias restados:', dt)
+print('5 dias sumados:', dd)
+
+# =========================================================================
+ayer = date.today() - timedelta(1)
+mañana = date.today() + timedelta(1)
+print('Ayer : ', ayer)
+print('Hoy : ', date.today())
+print('Mañana : ', mañana)
+
+# =========================================================================
+for n in range(0, 5):
+    print(date.today()+timedelta(n))
+# =========================================================================
+print("Incremento 5 segundos:")
+print(datetime.datetime.now().time())
+dm = datetime.datetime.now()+timedelta(seconds=5)
+print(dm.time())
+
+
+# timedelta  days=50,
+# seconds=27,
+# microseconds=10,
+# milliseconds=29000,
+# minutes=5,
+# hours=8,
+# weeks=2
 
 # %a	Weekday, short version	Wed
 # %A	Weekday, full version	Wednesday
