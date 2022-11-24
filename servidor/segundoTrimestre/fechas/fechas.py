@@ -48,6 +48,8 @@ print("Incremento 5 segundos:")
 print(datetime.datetime.now().time())
 dm = datetime.datetime.now()+timedelta(seconds=5)
 print(dm.time())
+# =========================================================================
+print("AHORA: ", datetime.datetime.now())
 
 
 # timedelta  days=50,
