@@ -36,7 +36,7 @@ CREATE TABLE comentarios (
     usuarioId INT NOT NULL,
     imagen varchar(255),
     PRIMARY KEY (id),
-    FOREIGN KEY (usuarioId) REFERENCES usuarios(id)
+    FOREIGN KEY (usuarioId) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 CREATE TABLE regOperaciones (
@@ -45,7 +45,7 @@ CREATE TABLE regOperaciones (
     operacion varchar(255) NOT NULL,
     parametros varchar(3000) NOT NULL,
     tmpAccion datetime NOT NULL,
-    FOREIGN KEY (usuarioId) REFERENCES usuarios(id)
+    FOREIGN KEY (usuarioId) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 -- XXX, 2, "postea.py", "", "2022-11-23 09:13:21"

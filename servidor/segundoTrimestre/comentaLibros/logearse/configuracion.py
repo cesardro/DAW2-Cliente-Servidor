@@ -6,7 +6,3 @@ configBD = {
     "password": 'comentaLibrosTiempo',
     "database": 'comentaLibrosTiempo'
 }
-configPath = {
-    "datos": "datos/",
-    "img": "img/"
-}

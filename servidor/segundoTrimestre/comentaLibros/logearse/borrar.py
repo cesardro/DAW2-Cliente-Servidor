@@ -4,8 +4,7 @@ from configuracion import configBD
 import cgi
 import codigoHTML
 import mysql.connector
-
-estasDentro = False
+from regOperaciones import regTiempos
 
 args = cgi.parse()
 idUser = args["idUsuario"][0]
@@ -23,6 +22,10 @@ mydb.commit()
 
 print("Content-Type: text/html\n")
 
+print(idUser)
+
 print(codigoHTML.cabeceraHTML.format("Borrado con exito",
       '<meta http-equiv="Refresh" content="2; URL=soyAdmin.py"/>', "Borrado con exito. Redirigiendo", "", ""))
 print(codigoHTML.finalHTML)
+
+regTiempos("borrado.py", "borrado="+idUser, 1)
