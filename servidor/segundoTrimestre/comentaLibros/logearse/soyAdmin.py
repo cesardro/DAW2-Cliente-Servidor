@@ -54,7 +54,7 @@ if proceder:
             print('</form></td>')
         print('</tr>')
     print('</table>')
-    print('<form action="logout.py" method="get"><button type="submit" class="btn btn-primary">Log out</button></form>')
+    print('<form action="logout.py" method="post"><button type="submit" class="btn btn-primary">Log out</button></form>')
     print(codigoHTML.finalHTML)
 
 else:

@@ -31,7 +31,7 @@ mycursor.execute("SELECT id FROM usuarios where usuario='" +
                  todasCokis['SID']+"'")
 myresult = mycursor.fetchall()
 
-regTiempos("logout.py", "cookie="+todasCokis['SID'], 3)
+regTiempos("logout.py", "cookie="+todasCokis['SID'], myresult[0][0])
 
 if 'SID' in todasCokis:
     coki = cookies.SimpleCookie()
