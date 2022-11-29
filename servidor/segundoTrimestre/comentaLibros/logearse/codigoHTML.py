@@ -76,7 +76,7 @@ postea = """
 
 soyAdminHTML = """
                 <table class="table">
-                    <tr><th>Nombre</th><th>Admin</th><th>Borrar</th></tr>
+                    <tr><th>Nombre</th><th>Admin</th><th>Borrar</th><th>Historial</th></tr>
                     {}
             </div>
             <div class="col-3"></div>
@@ -84,4 +84,9 @@ soyAdminHTML = """
     </div>
 </body>
 </html>
+"""
+
+historialAdminHTML = """
+                <table class="table">
+                    <tr><th>ID</th><th>Usuario ID</th><th>Operacion</th><th>Parametros</th><th>Tiempo Accion</th></tr>
 """

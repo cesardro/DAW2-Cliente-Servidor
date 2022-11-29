@@ -45,15 +45,28 @@ if proceder:
         if x[4] == 1:
             print('<td>Si</td>')
             print('<td>No disponible</td>')
+            print('<td><form action="historial.py" method="post">')
+            print(
+                '<button type="submit" class="btn btn-primary">Historial Operaciones</button>')
+            print('<input type="hidden" name="idUsuario" value="' +
+                  str(x[0])+'">')
+            print('</form></td>')
         else:
             print('<td>No</td>')
             print('<td><form action="borrar.py" method="post">')
             print('<button type="submit" class="btn btn-primary">Borrar</button>')
             print('<input type="hidden" name="idUsuario" value="' +
                   str(x[0])+'">')
+            print('</form>')
+            print('<td><form action="historial.py" method="post">')
+            print(
+                '<button type="submit" class="btn btn-primary">Historial Operaciones</button>')
+            print('<input type="hidden" name="idUsuario" value="' +
+                  str(x[0])+'">')
             print('</form></td>')
         print('</tr>')
     print('</table>')
+    print('<form action="historial.py" method="post"><button type="submit" class="btn btn-primary">Historial Operaciones</button></form><br>')
     print('<form action="logout.py" method="post"><button type="submit" class="btn btn-primary">Log out</button></form>')
     print(codigoHTML.finalHTML)
 
