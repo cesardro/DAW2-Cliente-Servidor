@@ -7,6 +7,7 @@ from http import cookies
 import codigoHTML
 import mysql.connector
 import cgitb
+from regOperaciones import regTiempos
 cgitb.enable()
 
 form = cgi.FieldStorage()
@@ -53,7 +54,7 @@ if 'SID' in todasCokis:
 mycursor.execute("SELECT MAX(id) FROM comentarios")
 myresult = mycursor.fetchall()
 
-fileName = str((myresult[0][0])+1)+name+fileitem.filename
+fileName = str(myresult[0][0])+name+fileitem.filename
 
 if fileitem.filename:
     fn = os.path.basename(fileName)
@@ -66,6 +67,9 @@ if fileitem.filename:
     val = (titulo, autor, comentario, myresult[0][0], fn)
     mycursor.execute(sql, val)
     mydb.commit()
+
+    regTiempos("guardarEnBD.py", "titulo="+titulo+"&autor=" +
+               autor+"&comentario="+comentario+"&imagen="+fn, myresult[0][0])
 
     print("Content-Type: text/html\n")
 

@@ -5,6 +5,7 @@ import codigoHTML
 import os
 from http import cookies
 import mysql.connector
+from regOperaciones import regTiempos
 
 proceder = False
 
@@ -16,8 +17,7 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
-
-mycursor.execute("SELECT usuario FROM usuarios")
+mycursor.execute("SELECT usuario, id FROM usuarios")
 myresult = mycursor.fetchall()
 
 todasCokis = {}  # diccionario vacio
@@ -29,12 +29,14 @@ if 'HTTP_COOKIE' in os.environ:
         (nombre, valor) = elemCoki.split('=')
         todasCokis[nombre] = valor
 
+
 coki = cookies.SimpleCookie()
 
 if 'SID' in todasCokis:
     for datos in myresult:
         if (datos[0] == todasCokis['SID']):
             proceder = True
+            regTiempos("postea.py", "cookie="+todasCokis['SID'], datos[1])
 
 if proceder:
     print("Content-Type: text/html\n")

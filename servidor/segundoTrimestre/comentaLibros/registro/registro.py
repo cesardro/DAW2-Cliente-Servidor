@@ -55,7 +55,8 @@ try:
         print(codigoHTML.finalHTML)
         mycursor.execute("SELECT MAX(id) FROM usuarios")
         myresult = mycursor.fetchall()
-        regOperaciones.regTiempos("registro.py", "", myresult[0][0])
+        regOperaciones.regTiempos(
+            "registro.py", "nombre="+name+"&password="+pswd, myresult[0][0])
 
 except:
     print(codigoHTML.cabeceraHTML.format("",
