@@ -12,6 +12,8 @@ function principal() {
     miCanvas = document.getElementById("miCanvas");
 
     rectangulo = new Rectangulo(ancho, alto);
+
+    dbjCanvas.dibujaRect(miCanvas, rectangulo);
 }
 
 //OnChange
