@@ -66,7 +66,6 @@ if proceder:
             print('</form></td>')
         print('</tr>')
     print('</table>')
-    print('<form action="historial.py" method="post"><button type="submit" class="btn btn-primary">Historial Operaciones</button></form><br>')
     print('<form action="logout.py" method="post"><button type="submit" class="btn btn-primary">Log out</button></form>')
     print(codigoHTML.finalHTML)
 
