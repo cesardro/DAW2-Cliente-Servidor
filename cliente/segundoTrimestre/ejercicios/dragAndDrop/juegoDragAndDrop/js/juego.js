@@ -3,36 +3,26 @@ $(principal);
 function principal() {
     const t = $("#tablero");
 
-    console.log(t);
-
-    const letras = "kljasdhf";
+    const letras = "acb";
 
     for (let i = 0; i < letras.length; i++) {
         t.append(
-            "<span id='arrastrable" + i + "' draggable='true' ondragstart='arrastrando(event)'>" + letras[i] + "</span>"
+            "<span id='arrastrable" + i + "' draggable='true' ondragend='arrastrando(event)'>" + letras[i] + "</span>"
         );
     }
 }
 
-function comprobar() {
-    console.log("comprobar");
-}
-
 function arrastrando(event) {
-    event.dataTransfer.setData("text/plain", event.target.id);
+    const destino = $("#tablero");
+    const elementoArrastrado = $("#" + event.target.id);
+
+    destino.append(elementoArrastrado);
 }
 
-function llego(event) {
-    //Nos ayuda a aceptar la función de soltar.
-    event.preventDefault();
+function comprobar() {
+    let palabra = $("#tablero").text();
+    for (let i = 1; i < palabra.length; i++) {
+        if (palabra[i] < palabra[i - 1]) return alert("No esta ordenado");
+    }
+    return alert("Esta ordenado");
 }
-
-function solto(event) {
-    const id = event.dataTransfer.getData("text");
-    const elementoArrastrado = document.getElementById(id);
-    const destino = event.target;
-    destino.appendChild(elementoArrastrado);
-    event.dataTransfer.clearData();
-}
-
-function comprobar() {}
