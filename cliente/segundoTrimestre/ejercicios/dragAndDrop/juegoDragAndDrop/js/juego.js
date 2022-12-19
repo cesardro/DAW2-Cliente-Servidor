@@ -13,10 +13,8 @@ function principal() {
 }
 
 function arrastrando(event) {
-    const destino = $("#tablero");
-    const elementoArrastrado = $("#" + event.target.id);
-
-    destino.append(elementoArrastrado);
+    $("#tablero").append($("#" + event.target.id));
+    event.dataTransfer.clearData();
 }
 
 function comprobar() {
