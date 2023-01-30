@@ -22,7 +22,8 @@ for x in myresult:
         "EquipoLocal": x[1],
         "EquipoVisitante": x[2],
         "GolesLocal": x[3],
-        "GolesVisitante": x[4]
+        "GolesVisitante": x[4],
+        "IDTabla": x[0]
     },
 
 salida = json.dumps(datos)

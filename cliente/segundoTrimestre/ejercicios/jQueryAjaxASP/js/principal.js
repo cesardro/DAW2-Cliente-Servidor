@@ -28,6 +28,8 @@ $("#btnMR").click(modificaPartido);
 $("#btnDL").click(borraPartido);
 $("#btnLF").click(limpiaFormulario);
 
+let idTablaMod;
+
 //Carga de datos incial, directo de la BD a la tabla HTML.
 function cargaInicial() {
     $.post("py/datosPartidos.py", {}, inciarTabla);
@@ -36,9 +38,10 @@ function cargaInicial() {
 function inciarTabla(data, status) {
     if (status == "success") {
         //Introduce los datos que vienen en un JSON en la tabla.
-        let datosPartidos = JSON.parse(data);
+        let datosPartidos = $.parseJSON(data);
+        $("#tablaCuerpo").empty();
         for (dp of datosPartidos) {
-            crearFila(dp.EquipoLocal, dp.EquipoVisitante, dp.GolesLocal, dp.GolesVisitante);
+            crearFila(dp.IDTabla, dp.EquipoLocal, dp.EquipoVisitante, dp.GolesLocal, dp.GolesVisitante);
         }
     } else {
         alert("Error al recuperar los partidos.");
@@ -65,14 +68,15 @@ function registraPartido() {
 
 function respuesta(data, status) {
     if (status == "success") {
-        crearFila(el.val(), ev.val(), gl.val(), gv.val());
+        let ultimoId = $.parseJSON(data);
+        crearFila(ultimoId[0][0], el.val(), ev.val(), gl.val(), gv.val());
     }
 }
 
 //Auxiliar que crea una fila en la tabla HTML para el usuario.
-function crearFila(elp, evp, glp, gvp) {
+function crearFila(idtabla, elp, evp, glp, gvp) {
     $("#tablaCuerpo").append(
-        `<tr ondblclick="rellenaFormulario()" ><td>${elp}</td><td>${evp}</td><td>${glp}</td><td>${gvp}</td></tr>`
+        `<tr ondblclick="rellenaFormulario(${idtabla})"><td>${elp}</td><td>${evp}</td><td>${glp}</td><td>${gvp}</td></tr>`
     );
 }
 
@@ -84,7 +88,8 @@ function validarDatos() {
 cargaInicial();
 
 //Accion asociada al doble click de cada fila.
-function rellenaFormulario() {
+function rellenaFormulario(idTabla) {
+    idTablaMod = idTabla;
     let celda = $(this.event.target).parent().children().first();
     el.val(celda.html());
     ev.val(celda.next().html());
@@ -97,10 +102,38 @@ function rellenaFormulario() {
 }
 
 //Función que modifica los datos de una fila en la base de datos y en la tabla HTML.
-function modificaPartido() {}
+function modificaPartido() {
+    $.post(
+        "py/modificarDatos.py",
+        {
+            EquipoLocal: el.val(),
+            EquipoVisitante: ev.val(),
+            GolesLocal: gl.val(),
+            GolesVisitante: gv.val(),
+            ID: idTablaMod
+        },
+        comprobarCambio
+    );
+}
 
 //Función que borra los datos de una fila en la base de datos y en la tabla HTML.
-function borraPartido() {}
+function borraPartido() {
+    console.log(idTablaMod);
+    $.post(
+        "py/borrarFila.py",
+        {
+            ID: idTablaMod
+        },
+        comprobarCambio
+    );
+}
+
+function comprobarCambio(data, status) {
+    if (status == "success") {
+        alert("Cambios modificados.");
+        cargaInicial();
+    }
+}
 
 //Función que limpia los datos en el formulario.
 function limpiaFormulario() {
